@@ -61,7 +61,11 @@ body::after {
   font-weight: 500;
   letter-spacing: .04em;
   line-height: .8;
-  text-shadow: 0 0 13px rgba(255,255,255,.4);
+  text-shadow:
+    0 0 2px rgba(255,255,255,.95),
+    0 0 8px rgba(225,238,255,.7),
+    0 0 20px rgba(160,198,255,.38);
+  animation: led-glow-soft 3.8s ease-in-out infinite alternate;
 }
 
 .monogram span {
@@ -77,25 +81,72 @@ h1 {
   justify-content: center;
   gap: clamp(18px, 4vw, 58px);
   margin: 0;
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(3rem, 5.5vw, 5.2rem);
-  font-weight: 400;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 5.1vw, 4.9rem);
+  font-style: italic;
+  font-weight: 500;
   line-height: 1.05;
   white-space: nowrap;
-  text-shadow: 0 0 8px rgba(255,255,255,.65), 0 0 30px rgba(198,220,255,.3);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 6px rgba(255,255,255,.95),
+    0 0 15px rgba(215,233,255,.78),
+    0 0 34px rgba(130,178,255,.5),
+    0 0 58px rgba(94,145,235,.25);
+  animation: led-glow 3.2s ease-in-out infinite alternate;
+}
+
+.name-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.chinese-name {
+  margin-top: .46em;
+  font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+  font-size: .42em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .2em;
+  line-height: 1;
+  text-shadow:
+    0 0 2px rgba(255,255,255,.95),
+    0 0 8px rgba(215,233,255,.65),
+    0 0 18px rgba(120,170,245,.32);
 }
 
 .ampersand { font-size: .72em; }
 
+.heart {
+  color: #fff5f7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: normal;
+  font-size: .68em;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 7px rgba(255,225,232,.95),
+    0 0 16px rgba(255,145,170,.72),
+    0 0 32px rgba(235,78,120,.42);
+  transform: translateY(-.06em);
+  animation: heart-beat 2.8s ease-in-out infinite;
+}
+
 time {
   display: block;
   margin-top: clamp(22px, 4vh, 42px);
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.55rem, 3vw, 2.65rem);
-  font-weight: 500;
-  letter-spacing: .14em;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.25rem, 2.45vw, 2.15rem);
+  font-weight: 300;
+  letter-spacing: .18em;
   line-height: 1;
-  text-shadow: 0 0 12px rgba(0,0,0,.9), 0 0 8px rgba(255,255,255,.25);
+  text-shadow:
+    0 1px 4px rgba(0,0,0,.95),
+    0 0 3px rgba(255,255,255,.92),
+    0 0 10px rgba(215,233,255,.55),
+    0 0 22px rgba(120,170,245,.28);
+  animation: led-glow-soft 4.2s .6s ease-in-out infinite alternate;
 }
 
 @keyframes reveal {
@@ -103,13 +154,44 @@ time {
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
+@keyframes led-glow {
+  from {
+    filter: brightness(.92);
+    opacity: .9;
+  }
+  to {
+    filter: brightness(1.18);
+    opacity: 1;
+  }
+}
+
+@keyframes led-glow-soft {
+  from { filter: brightness(.94); }
+  to { filter: brightness(1.1); }
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: translateY(-.06em) scale(1); filter: brightness(.95); }
+  45% { transform: translateY(-.06em) scale(1.08); filter: brightness(1.16); }
+  55% { transform: translateY(-.06em) scale(1.03); filter: brightness(1.06); }
+}
+
 @media (max-width: 700px) {
   .hero { padding-top: clamp(28px, 5vh, 48px); }
   h1 { flex-direction: column; align-items: center; gap: 0; white-space: normal; }
+  .chinese-name { margin-top: .36em; }
   .ampersand { margin: -.15em 0 -.06em; }
+  .heart { margin: -.08em 0; }
   time { margin-top: 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wedding-card { animation-duration: .01ms; animation-iteration-count: 1; }
+  .wedding-card,
+  .monogram,
+  h1,
+  time,
+  .heart {
+    animation-duration: .01ms;
+    animation-iteration-count: 1;
+  }
 }

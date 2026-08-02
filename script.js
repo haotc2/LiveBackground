@@ -1,7 +1,9 @@
 // Nội dung lễ cưới.
 const wedding = {
   bride: "Phương Nhi",
+  brideZh: "芳儿",
   groom: "Chí Hào",
+  groomZh: "志豪",
   date: "29.11.2026",
   dateTime: "2026-11-29",
 };
@@ -12,8 +14,10 @@ const STAR_DENSITY = 1;
 const FLARE_POINTS = 6;
 
 document.querySelector("#bride-name").textContent = wedding.bride;
+document.querySelector("#bride-name-zh").textContent = wedding.brideZh;
 document.querySelector("#groom-name").textContent = wedding.groom;
-document.querySelector("#monogram").innerHTML = `${wedding.bride[0]}<span>&amp;</span>${wedding.groom[0]}`;
+document.querySelector("#groom-name-zh").textContent = wedding.groomZh;
+document.querySelector("#monogram").innerHTML = `Lễ Thành Hôn`;
 const dateElement = document.querySelector("#wedding-date");
 dateElement.textContent = wedding.date;
 dateElement.dateTime = wedding.dateTime;
