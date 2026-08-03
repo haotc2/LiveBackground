@@ -17,12 +17,18 @@ document.querySelector("#groom-name").textContent = wedding.groom;
 document.querySelector("#groom-name-zh").textContent = wedding.groomZh;
 document.querySelector("#monogram").innerHTML = `SAVE THE DATE`;
 const dateElement = document.querySelector("#wedding-date");
-const currentDate = new Date();
-const currentDay = String(currentDate.getDate()).padStart(2, "0");
-const currentMonth = String(currentDate.getMonth() + 1).padStart(2, "0");
-const currentYear = currentDate.getFullYear();
-dateElement.textContent = `${currentDay}.${currentMonth}.${currentYear}`;
-dateElement.dateTime = `${currentYear}-${currentMonth}-${currentDay}`;
+
+function updateCurrentDate() {
+  const currentDate = new Date();
+  const currentDay = String(currentDate.getDate()).padStart(2, "0");
+  const currentMonth = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const currentYear = currentDate.getFullYear();
+  dateElement.textContent = `${currentDay}.${currentMonth}.${currentYear}`;
+  dateElement.dateTime = `${currentYear}-${currentMonth}-${currentDay}`;
+}
+
+updateCurrentDate();
+setInterval(updateCurrentDate, 60_000);
 
 const canvas = document.querySelector("#stars");
 const ctx = canvas.getContext("2d");
