@@ -4,8 +4,6 @@ const wedding = {
   brideZh: "芳儿",
   groom: "Chí Hào",
   groomZh: "志豪",
-  date: "29.11.2026",
-  dateTime: "2026-11-29",
 };
 
 // Mật độ sao: 0.5 = nhẹ, 1 = chuẩn file mẫu, 1.5 = dày hơn.
@@ -19,8 +17,12 @@ document.querySelector("#groom-name").textContent = wedding.groom;
 document.querySelector("#groom-name-zh").textContent = wedding.groomZh;
 document.querySelector("#monogram").innerHTML = `SAVE THE DATE`;
 const dateElement = document.querySelector("#wedding-date");
-dateElement.textContent = wedding.date;
-dateElement.dateTime = wedding.dateTime;
+const currentDate = new Date();
+const currentDay = String(currentDate.getDate()).padStart(2, "0");
+const currentMonth = String(currentDate.getMonth() + 1).padStart(2, "0");
+const currentYear = currentDate.getFullYear();
+dateElement.textContent = `${currentDay}.${currentMonth}.${currentYear}`;
+dateElement.dateTime = `${currentYear}-${currentMonth}-${currentDay}`;
 
 const canvas = document.querySelector("#stars");
 const ctx = canvas.getContext("2d");
