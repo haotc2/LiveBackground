@@ -9,7 +9,7 @@ const wedding = {
 };
 
 // Mật độ sao: 0.5 = nhẹ, 1 = chuẩn file mẫu, 1.5 = dày hơn.
-const STAR_DENSITY = 1;
+const STAR_DENSITY = 1.5;
 // Chọn 4 hoặc 6 tia cho hiệu ứng Star flare.
 const FLARE_POINTS = 6;
 
@@ -17,7 +17,7 @@ document.querySelector("#bride-name").textContent = wedding.bride;
 document.querySelector("#bride-name-zh").textContent = wedding.brideZh;
 document.querySelector("#groom-name").textContent = wedding.groom;
 document.querySelector("#groom-name-zh").textContent = wedding.groomZh;
-document.querySelector("#monogram").innerHTML = `Lễ Thành Hôn`;
+document.querySelector("#monogram").innerHTML = `SAVE THE DATE`;
 const dateElement = document.querySelector("#wedding-date");
 dateElement.textContent = wedding.date;
 dateElement.dateTime = wedding.dateTime;
@@ -141,7 +141,7 @@ class MedStar extends FlightStar {
     // Những sao trung bình khi đủ lớn sẽ có diffraction spikes nhỏ.
     if (radius > 2.35 && alpha > 0.58) {
       const spikeLength = Math.min(15, radius * 3.2);
-      const thickness = Math.max(0.45, radius * 0.12);
+      const thickness = Math.max(1.45, radius * 0.12);
       ctx.save();
       ctx.translate(this.sx, this.sy);
       ctx.globalCompositeOperation = "lighter";
@@ -165,8 +165,8 @@ class MedStar extends FlightStar {
 class FlareStar extends FlightStar {
   constructor(randomStartZ) {
     super(randomStartZ);
-    this.baseSize = Math.random() * 0.45 + 0.7;
-    this.baseAlpha = Math.random() * 0.2 + 0.68;
+    this.baseSize = Math.random() * 0.9 + 1.2;
+    this.baseAlpha = Math.random() * 0.18 + 0.76;
     this.rot = Math.random() * Math.PI;
     this.twinkleSpeed = 0.018 + Math.random() * 0.018;
   }
@@ -179,12 +179,13 @@ class FlareStar extends FlightStar {
 
   draw() {
     if (this.offscreen()) return;
-    const twinkle = 0.68 + 0.32 * Math.sin(this.phase);
+    const shimmer = Math.pow((Math.sin(this.phase) + 1) / 2, 2);
+    const twinkle = 0.48 + 0.52 * shimmer;
     const scale = Math.min(this.factor, 4.2);
     const flareVisibility = Math.max(0.42, this.edgeFade);
     const alpha = Math.min(1, this.baseAlpha * twinkle * flareVisibility);
-    const size = this.baseSize * Math.min(scale, 1.8);
-    const spikeLength = size * (4.2 + 1.6 * Math.min(scale, 2.5));
+    const size = this.baseSize * Math.min(scale, 2.15);
+    const spikeLength = size * (4.8 + 1.9 * Math.min(scale, 2.5));
 
     ctx.save();
     ctx.translate(this.sx, this.sy);
@@ -193,31 +194,34 @@ class FlareStar extends FlightStar {
 
     const axisCount = FLARE_POINTS === 6 ? 3 : 2;
     const axisStep = Math.PI / axisCount;
-    const spikeThickness = Math.max(0.7, size * 0.38);
+    const spikeThickness = Math.max(1.5, size * 0.34);
 
     for (let axis = 0; axis < axisCount; axis += 1) {
       ctx.save();
       ctx.rotate(axis * axisStep);
       const spike = ctx.createLinearGradient(-spikeLength, 0, spikeLength, 0);
       spike.addColorStop(0, `rgba(${this.color},0)`);
-      spike.addColorStop(0.5, `rgba(${this.color},${alpha * 0.82})`);
+      spike.addColorStop(0.42, `rgba(${this.color},${alpha * 0.18})`);
+      spike.addColorStop(0.5, `rgba(255,255,255,${alpha})`);
+      spike.addColorStop(0.58, `rgba(${this.color},${alpha * 0.18})`);
       spike.addColorStop(1, `rgba(${this.color},0)`);
       ctx.fillStyle = spike;
       ctx.fillRect(-spikeLength, -spikeThickness / 2, spikeLength * 2, spikeThickness);
       ctx.restore();
     }
 
-    const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 3.2);
-    glow.addColorStop(0, `rgba(${this.color},${alpha * 0.4})`);
+    const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 4.2);
+    glow.addColorStop(0, `rgba(255,255,255,${alpha * 0.72})`);
+    glow.addColorStop(0.24, `rgba(${this.color},${alpha * 0.38})`);
     glow.addColorStop(1, `rgba(${this.color},0)`);
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(0, 0, size * 3.2, 0, Math.PI * 2);
+    ctx.arc(0, 0, size * 4.2, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = `rgba(255,255,255,${Math.min(1, alpha + 0.2)})`;
     ctx.beginPath();
-    ctx.arc(0, 0, size, 0, Math.PI * 2);
+    ctx.arc(0, 0, size * (1.08 + shimmer * 0.22), 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
