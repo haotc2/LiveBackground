@@ -1,7 +1,7 @@
 // Nội dung lễ cưới.
 const wedding = {
   bride: "Phương Nhi",
-  brideZh: "芳儿",
+  brideZh: "芳兒",
   groom: "Chí Hào",
   groomZh: "志豪",
 };
@@ -15,7 +15,7 @@ document.querySelector("#bride-name").textContent = wedding.bride;
 document.querySelector("#bride-name-zh").textContent = wedding.brideZh;
 document.querySelector("#groom-name").textContent = wedding.groom;
 document.querySelector("#groom-name-zh").textContent = wedding.groomZh;
-document.querySelector("#monogram").innerHTML = `SAVE THE DATE`;
+document.querySelector("#monogram").innerHTML = `新 婚 之 喜`;
 const dateElement = document.querySelector("#wedding-date");
 
 function updateCurrentDate() {
