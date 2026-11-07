@@ -5,7 +5,10 @@
   font-family: "Be Vietnam Pro", sans-serif;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  caret-color: transparent !important;
+}
 
 html,
 body {
@@ -14,6 +17,10 @@ body {
   margin: 0;
   overflow: hidden;
   background: #000;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #stars {
@@ -43,6 +50,9 @@ body::after {
   place-items: start center;
   padding: clamp(38px, 7vh, 76px) 28px 28px;
   isolation: isolate;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .wedding-card {

@@ -261,3 +261,19 @@ function frame() {
 window.addEventListener("resize", handleResize);
 handleResize();
 frame();
+
+// Chặn bôi đen văn bản và dấu nháy nhập liệu (typing caret)
+document.addEventListener("selectstart", (e) => e.preventDefault());
+document.addEventListener("mousedown", (e) => e.preventDefault());
+
+// Tự động ẩn con trỏ chuột sau 3 giây không di chuyển
+let cursorTimeout;
+function handleMouseMove() {
+  document.body.style.cursor = "default";
+  clearTimeout(cursorTimeout);
+  cursorTimeout = setTimeout(() => {
+    document.body.style.cursor = "none";
+  }, 3000);
+}
+window.addEventListener("mousemove", handleMouseMove);
+handleMouseMove();
