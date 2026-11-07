@@ -1,35 +1,40 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#03040b" />
-    <title>Nhi & Hào</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@300&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <canvas id="stars" aria-hidden="true"></canvas>
-    <main class="hero">
-      <section class="wedding-card" aria-label="Tên cô dâu và chú rể">
-        <p class="monogram" id="monogram">SAVE THE DATE</p>
-        <h1>
-          <span class="name-block">
-            <span id="groom-name">Chí Hào</span>
-            <span class="chinese-name" id="groom-name-zh" lang="zh-CN">志豪</span>
-          </span>
-          <span class="ampersand heart" aria-label="và">♥</span>
-          <span class="name-block">
-            <span id="bride-name">Phương Nhi</span>
-            <span class="chinese-name" id="bride-name-zh" lang="zh-CN">芳儿</span>
-          </span>
-        </h1>
-        <time id="wedding-date"></time>
-      </section>
-    </main>
 
-    <script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#03040b" />
+  <title>Nhi & Hào</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@300&family=Noto+Serif+SC:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <main class="hero">
+    <section class="wedding-card" aria-label="Tên cô dâu và chú rể">
+      <p class="monogram" id="monogram">SAVE THE DATE</p>
+      <h1>
+        <span class="name-block">
+          <span id="bride-name">Phương Nhi</span>
+          <span class="chinese-name" id="bride-name-zh" lang="zh-CN">芳儿</span>
+        </span>
+        <span class="ampersand heart" aria-label="và">♥</span>
+        <span class="name-block">
+          <span id="groom-name">Chí Hào</span>
+          <span class="chinese-name" id="groom-name-zh" lang="zh-CN">志豪</span>
+        </span>
+      </h1>
+      <time id="wedding-date" datetime="2026-11-28">28.11.2026</time>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
